@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Message } from "@/lib/gemini";
-import { Copy, Check, ExternalLink } from "lucide-react";
+import { Copy, Check, ArrowUpRight } from "lucide-react";
 
 interface ChatMessageProps {
   message: Message;
@@ -21,34 +21,36 @@ export default function ChatMessage({ message, isStreaming }: ChatMessageProps) 
 
   return (
     <div
-      className={`flex w-full my-3 ${
+      className={`flex w-full my-4 ${
         isUser ? "justify-end" : "justify-start"
-      } animate-in fade-in duration-300`}
+      } animate-fade-in-slide`}
     >
       <div
-        className={`flex max-w-[90%] md:max-w-[80%] items-start gap-3 ${
+        className={`flex max-w-[92%] md:max-w-[82%] items-start gap-3.5 ${
           isUser ? "flex-row-reverse" : "flex-row"
         }`}
       >
         {/* Avatar */}
-        <div className="flex-shrink-0 mt-0.5">
+        <div className="flex-shrink-0 mt-1">
           {isUser ? (
-            <div className="w-8 h-8 rounded-xl bg-slate-800 text-white flex items-center justify-center text-xs font-semibold shadow-sm">
-              訪客
+            <div className="w-7 h-7 rounded-xl bg-neutral-200 text-neutral-700 flex items-center justify-center text-[10px] font-bold tracking-wider">
+              YOU
             </div>
           ) : (
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-xs font-bold shadow-md shadow-blue-500/10">
-              唐
+            <div className="w-8 h-8 rounded-xl bg-neutral-950 text-white flex items-center justify-center shadow-xs border border-neutral-800">
+              <span className="font-serif-title text-xs font-bold tracking-wider text-neutral-100">
+                唐
+              </span>
             </div>
           )}
         </div>
 
         {/* Message Bubble */}
         <div
-          className={`relative group rounded-2xl px-4 py-3 text-sm leading-relaxed transition-all shadow-sm ${
+          className={`relative group rounded-2xl px-5 py-4 text-[13.5px] leading-relaxed transition-all ${
             isUser
-              ? "bg-blue-600 text-white rounded-tr-none font-sans"
-              : "bg-white text-slate-800 border border-slate-200/80 rounded-tl-none hover:border-slate-300"
+              ? "bg-neutral-900 text-neutral-100 rounded-tr-xs shadow-xs font-sans"
+              : "bg-white text-neutral-800 border border-neutral-200/80 rounded-tl-xs shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:border-neutral-300"
           }`}
         >
           {/* Content renderer */}
@@ -59,16 +61,16 @@ export default function ChatMessage({ message, isStreaming }: ChatMessageProps) 
               <FormattedMarkdown text={message.content} />
             )}
             {isStreaming && (
-              <span className="inline-block w-1.5 h-4 ml-1 align-middle bg-blue-600 animate-pulse" />
+              <span className="inline-block w-1.5 h-3.5 ml-1 align-middle bg-neutral-900 animate-pulse" />
             )}
           </div>
 
           {/* Copy Button for Assistant */}
           {!isUser && message.content && (
-            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
               <button
                 onClick={handleCopy}
-                className="p-1 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+                className="p-1 rounded-md text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors"
                 title="複製內容"
               >
                 {copied ? (
@@ -86,17 +88,16 @@ export default function ChatMessage({ message, isStreaming }: ChatMessageProps) 
 }
 
 /**
- * Lightweight formatting for bold, bullets, links, and headers without heavy dependencies
+ * Editorial Markdown formatting
  */
 function FormattedMarkdown({ text }: { text: string }) {
   const lines = text.split("\n");
 
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-2 text-neutral-800">
       {lines.map((line, idx) => {
         const trimmed = line.trim();
 
-        // Empty line
         if (!trimmed) {
           return <div key={idx} className="h-1.5" />;
         }
@@ -106,7 +107,7 @@ function FormattedMarkdown({ text }: { text: string }) {
           return (
             <h4
               key={idx}
-              className="text-base font-bold text-slate-900 mt-2 mb-1"
+              className="font-serif-title text-base font-bold text-neutral-900 mt-3 mb-1"
             >
               {parseInlineText(trimmed.slice(4))}
             </h4>
@@ -118,7 +119,7 @@ function FormattedMarkdown({ text }: { text: string }) {
           return (
             <h3
               key={idx}
-              className="text-lg font-bold text-slate-900 mt-2.5 mb-1.5"
+              className="font-serif-title text-lg font-bold text-neutral-900 mt-4 mb-1.5"
             >
               {parseInlineText(trimmed.slice(3))}
             </h3>
@@ -128,9 +129,11 @@ function FormattedMarkdown({ text }: { text: string }) {
         // Bullet point: - or *
         if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
           return (
-            <div key={idx} className="flex items-start gap-2 pl-1">
-              <span className="text-blue-500 font-bold mt-1 text-xs">•</span>
-              <span className="flex-1">{parseInlineText(trimmed.slice(2))}</span>
+            <div key={idx} className="flex items-start gap-2.5 pl-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-neutral-700 mt-2 flex-shrink-0" />
+              <div className="flex-1 leading-relaxed">
+                {parseInlineText(trimmed.slice(2))}
+              </div>
             </div>
           );
         }
@@ -139,18 +142,20 @@ function FormattedMarkdown({ text }: { text: string }) {
         const matchNumber = trimmed.match(/^(\d+)\.\s+(.*)/);
         if (matchNumber) {
           return (
-            <div key={idx} className="flex items-start gap-2 pl-1">
-              <span className="text-blue-600 font-semibold text-xs mt-0.5 min-w-[16px]">
+            <div key={idx} className="flex items-start gap-2.5 pl-1">
+              <span className="font-mono text-xs font-bold text-neutral-500 mt-0.5 min-w-[16px]">
                 {matchNumber[1]}.
               </span>
-              <span className="flex-1">{parseInlineText(matchNumber[2])}</span>
+              <div className="flex-1 leading-relaxed">
+                {parseInlineText(matchNumber[2])}
+              </div>
             </div>
           );
         }
 
         // Regular paragraph line
         return (
-          <p key={idx} className="text-slate-800">
+          <p key={idx} className="leading-relaxed">
             {parseInlineText(line)}
           </p>
         );
@@ -163,14 +168,13 @@ function FormattedMarkdown({ text }: { text: string }) {
  * Inline parser for **bold** and [links](url)
  */
 function parseInlineText(text: string): React.ReactNode[] {
-  // Regex to match **bold** or [text](url)
   const regex = /(\*\*.*?\*\*|\[.*?\]\(.*?\))/g;
   const parts = text.split(regex);
 
   return parts.map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={index} className="font-semibold text-slate-900">
+        <strong key={index} className="font-bold text-neutral-950">
           {part.slice(2, -2)}
         </strong>
       );
@@ -185,10 +189,10 @@ function parseInlineText(text: string): React.ReactNode[] {
           href={linkUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-0.5 text-blue-600 hover:text-blue-800 underline font-medium"
+          className="inline-flex items-center gap-0.5 font-medium text-neutral-900 underline decoration-neutral-400 underline-offset-4 hover:decoration-neutral-950 transition-colors"
         >
           {linkText}
-          <ExternalLink className="w-2.5 h-2.5 ml-0.5 inline" />
+          <ArrowUpRight className="w-3 h-3 inline ml-0.5 opacity-60" />
         </a>
       );
     }

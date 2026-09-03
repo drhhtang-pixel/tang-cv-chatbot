@@ -5,11 +5,10 @@ import { Message } from "@/lib/gemini";
 import ChatMessage from "./ChatMessage";
 import SuggestedPrompts from "./SuggestedPrompts";
 import {
-  Send,
-  Trash2,
+  ArrowUp,
+  RotateCcw,
   AlertCircle,
   Loader2,
-  Sparkles,
   PanelLeftClose,
   PanelLeftOpen,
 } from "lucide-react";
@@ -21,7 +20,7 @@ interface ChatInterfaceProps {
 
 const INITIAL_MESSAGE: Message = {
   role: "assistant",
-  content: `您好！我是國立臺灣科技大學設計系主任兼教授、設計創新思考研究室（DITL）總監 **唐玄輝教授（Prof. Hsien-Hui Tang）** 的 AI 數位特使。\n\n我能代表唐老師為您介紹他在**體驗戰略、服務創新、AI 創新應用**的 22 年實踐與教育成就，包含：\n- 🏆 **累計 20+ 座國際大獎**（包含亞洲首度奪得 ACM CHI SDC 金獎與 SDN 服務設計金獎紀錄）\n- 🎓 **頂尖企業畢業生網絡**（遍佈 Google、微軟、台積電、阿里巴巴等）\n- 💼 **百場企業培訓與產學合作**（包含 P&G、富邦銀行、大潤發、公部門公共服務改革等）\n- 💡 **2026 前瞻洞見**（《人工智慧浪潮中 創新的改變及 設計的消逝與重生》）\n\n您可以點擊下方的常見問題，或直接在對話框中輸入您想了解的內容！`,
+  content: `您好！我是國立臺灣科技大學設計系主任兼教授、設計創新思考研究室（DITL）總監 **唐玄輝教授（Prof. Hsien-Hui Tang）** 的 AI 數位特使。\n\n我能代表唐老師向您介紹他在**體驗戰略、服務創新、AI 應用**的 22 年實踐與教育成果：\n- 🏆 **累計 20+ 座國際頂尖大獎**（包含亞洲首度奪得 ACM CHI SDC 金獎與 SDN 服務設計金獎紀錄）\n- 🎓 **頂尖企業校友網絡**（遍佈 Google、微軟、台積電、阿里巴巴等頂尖機構）\n- 💼 **百場企業內訓與產學合作**（涵蓋 P&G、富邦銀行、大潤發、公部門公共服務改革等）\n- 💡 **2026 前瞻觀點**（《人工智慧浪潮中 創新的改變及 設計的消逝與重生》）\n\n您可以點擊下方的精選問題，或隨時在輸入框中提問！`,
 };
 
 const MAX_CHARS = 500;
@@ -38,12 +37,10 @@ export default function ChatInterface({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-scroll to bottom on new messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  // Adjust textarea height automatically
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
@@ -68,7 +65,6 @@ export default function ChatInterface({
     setMessages(newMessages);
     setIsLoading(true);
 
-    // Placeholder for assistant stream
     const assistantIndex = newMessages.length;
     setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
 
@@ -115,7 +111,6 @@ export default function ChatInterface({
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "發生未知錯誤";
       setErrorMessage(msg);
-      // Remove empty assistant placeholder if failed completely
       setMessages((prev) => {
         if (
           prev[assistantIndex] &&
@@ -138,39 +133,39 @@ export default function ChatInterface({
   };
 
   const handleClearHistory = () => {
-    if (window.confirm("確定要重置並清空當前對話紀錄嗎？")) {
+    if (window.confirm("確定要重置並清空對話紀錄嗎？")) {
       setMessages([INITIAL_MESSAGE]);
       setErrorMessage(null);
     }
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-slate-50 relative overflow-hidden">
-      {/* Top Bar */}
-      <header className="h-14 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 flex items-center justify-between z-10">
+    <div className="flex-1 flex flex-col h-full bg-[#fafaf9] relative overflow-hidden">
+      {/* Top Floating Bar */}
+      <header className="h-16 bg-white/80 backdrop-blur-md border-b border-neutral-200/70 px-6 flex items-center justify-between z-10">
         <div className="flex items-center gap-3">
           {onToggleSidebar && (
             <button
               onClick={onToggleSidebar}
-              className="p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
-              title={isSidebarOpen ? "收合履歷資訊" : "展開履歷資訊"}
+              className="p-2 rounded-xl text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-colors"
+              title={isSidebarOpen ? "收合左側經歷" : "展開左側經歷"}
             >
               {isSidebarOpen ? (
-                <PanelLeftClose className="w-5 h-5" />
+                <PanelLeftClose className="w-4 h-4" />
               ) : (
-                <PanelLeftOpen className="w-5 h-5" />
+                <PanelLeftOpen className="w-4 h-4" />
               )}
             </button>
           )}
 
-          <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="flex items-center gap-2.5">
+            <div className="w-2 h-2 rounded-full bg-emerald-500" />
             <div>
-              <h2 className="text-sm font-bold text-slate-900 leading-tight">
+              <h2 className="text-sm font-bold text-neutral-900 leading-tight">
                 唐玄輝教授 AI 數位特使
               </h2>
-              <p className="text-[10px] text-slate-500 hidden sm:block">
-                台科大設計系 • DITL 創新思考研究室 • 線上即時問答
+              <p className="text-[11px] text-neutral-400 font-medium">
+                National Taiwan University of Science and Technology • DITL
               </p>
             </div>
           </div>
@@ -181,18 +176,18 @@ export default function ChatInterface({
             <button
               onClick={handleClearHistory}
               disabled={isLoading}
-              className="flex items-center gap-1.5 px-2.5 py-1 text-xs text-slate-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 rounded-lg transition-colors"
               title="重新對話"
             >
-              <Trash2 className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">清除對話</span>
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline font-medium">重置對話</span>
             </button>
           )}
         </div>
       </header>
 
       {/* Messages List Area */}
-      <main className="flex-1 overflow-y-auto px-4 py-6 md:px-8 space-y-4">
+      <main className="flex-1 overflow-y-auto px-4 py-8 md:px-10 space-y-4">
         <div className="max-w-3xl mx-auto w-full">
           {messages.map((message, index) => {
             const isLastAssistant =
@@ -210,7 +205,7 @@ export default function ChatInterface({
 
           {/* Show Suggested Prompts when only initial message exists */}
           {messages.length === 1 && (
-            <div className="my-6 animate-in fade-in slide-in-from-bottom-3 duration-500">
+            <div className="my-8 animate-fade-in-slide">
               <SuggestedPrompts
                 onSelectPrompt={(p) => handleSend(p)}
                 disabled={isLoading}
@@ -220,8 +215,8 @@ export default function ChatInterface({
 
           {/* Error Message Box */}
           {errorMessage && (
-            <div className="my-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-500" />
+            <div className="my-4 p-3.5 rounded-xl bg-red-50 border border-red-200/80 text-red-800 text-xs flex items-center gap-2.5">
+              <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-600" />
               <span>{errorMessage}</span>
             </div>
           )}
@@ -231,10 +226,9 @@ export default function ChatInterface({
       </main>
 
       {/* Bottom Input Area */}
-      <footer className="bg-white border-t border-slate-200/80 p-3 md:p-4 z-10">
+      <footer className="bg-gradient-to-t from-[#fafaf9] via-[#fafaf9] to-transparent p-4 md:p-6 z-10">
         <div className="max-w-3xl mx-auto w-full">
-          {/* Input Box Container */}
-          <div className="relative rounded-2xl border border-slate-200 bg-slate-50 focus-within:bg-white focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition-all shadow-xs">
+          <div className="relative rounded-2xl border border-neutral-300/80 bg-white shadow-sm focus-within:border-neutral-900 focus-within:ring-1 focus-within:ring-neutral-900 transition-all">
             <textarea
               ref={textareaRef}
               value={input}
@@ -242,33 +236,32 @@ export default function ChatInterface({
               onKeyDown={handleKeyDown}
               disabled={isLoading}
               rows={1}
-              placeholder="詢問唐老師的研究領域、國際獲獎、學生出路或 2026 AI 觀點..."
-              className="w-full resize-none bg-transparent py-3 pl-4 pr-24 text-sm text-slate-800 placeholder-slate-400 focus:outline-none disabled:opacity-50"
+              placeholder="詢問唐老師的研究領域、國際大獎、學生出路或 2026 AI 設計觀點..."
+              className="w-full resize-none bg-transparent py-3.5 pl-4 pr-24 text-[13.5px] text-neutral-900 placeholder-neutral-400 focus:outline-none disabled:opacity-50"
             />
 
-            {/* Right Action Buttons */}
-            <div className="absolute right-2 bottom-2 flex items-center gap-1.5">
-              <span className="text-[10px] text-slate-400 select-none mr-1">
+            <div className="absolute right-2.5 bottom-2.5 flex items-center gap-2">
+              <span className="text-[10px] font-mono text-neutral-400 select-none">
                 {input.length}/{MAX_CHARS}
               </span>
 
               <button
                 onClick={() => handleSend()}
                 disabled={!input.trim() || isLoading}
-                className="w-8 h-8 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white flex items-center justify-center transition-colors shadow-xs"
-                title="發送訊息 (Enter)"
+                className="w-8 h-8 rounded-xl bg-neutral-950 hover:bg-neutral-800 disabled:bg-neutral-200 text-white flex items-center justify-center transition-colors shadow-xs"
+                title="發送提問"
               >
                 {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin text-neutral-400" />
                 ) : (
-                  <Send className="w-4 h-4" />
+                  <ArrowUp className="w-4 h-4" />
                 )}
               </button>
             </div>
           </div>
 
-          <p className="text-center text-[11px] text-slate-400 mt-2">
-            AI 生成內容依據唐玄輝教授公開之學術與產學經歷資料庫整理，具備對話防護機制。
+          <p className="text-center text-[10px] text-neutral-400 tracking-wider mt-2.5">
+            PROF. HSIEN-HUI TANG • DESIGN INNOVATION & THINKING LAB (DITL) • AI AMBASSADOR
           </p>
         </div>
       </footer>
