@@ -1,0 +1,142 @@
+{
+  "name": {
+    "zh": "唐玄輝",
+    "en": "Hsien-Hui Tang"
+  },
+  "title": {
+    "zh": "國立臺灣科技大學設計系 教授兼系主任 / 設計創新思考研究室 (DITL) 總監",
+    "en": "Professor and Head of the Design Department, National Taiwan University of Science and Technology; Director, Design Innovation Thinking Lab (DITL)"
+  },
+  "shortBio40Words": "Hsien-Hui Tang is a Design Professor at Taiwan Tech, who enjoys both research and practice of AI-assisted product, service, and experience innovation, conducting research projects, publishing papers, executing design projects, and hosting industry trainings.",
+  "summary": {
+    "zh": "唐玄輝為臺科大教授兼設計創新思考研究室總監，專注於體驗戰略、服務創新與 AI 創新應用。他結合商業策略與設計思維，長期推動企業培訓與工作坊，賦能組織創新。深耕產學鏈結，指導學生屢獲國際大獎，畢業生遍佈 Google、台積電、阿里巴巴等頂尖企業，致力運用設計實踐商業價值與社會影響力。",
+    "en": "Prof. Tang has served in design education and practices for almost 22 years, enjoying both design research and practice. In recent years, he focused on the synergy between business strategy and design practice, user-centered innovation courses, experience strategy, and AI-assisted innovation."
+  },
+  "experienceYears": 22,
+  "coreDomains": [
+    {
+      "title": "體驗戰略 (Experience Strategy)",
+      "desc": "以使用者價值為核心，重塑多渠道體驗旅程，提升品牌忠誠度與企業創新競爭力。"
+    },
+    {
+      "title": "服務創新 (Service Innovation)",
+      "desc": "結合商業模式與服務系統設計，協助企業與公共部門建立高品質的端到端服務體驗。"
+    },
+    {
+      "title": "AI 創新應用與物聯網 (AI-assisted & AIoT Innovation)",
+      "desc": "研究與實踐人工智慧、生成式 AI 與物聯網在產品與服務創新中的應用，引領設計模式演進。"
+    },
+    {
+      "title": "商業策略與設計思維整合 (Synergy of Business & Design)",
+      "desc": "打破設計與商業部門壁壘，提升設計部門的商業意識，賦能非設計部門的設計思維。"
+    },
+    {
+      "title": "公共服務設計 (Public Service Innovation)",
+      "desc": "帶領團隊將設計力量導入政府公共服務，優化行政流程與民眾互動體感。"
+    }
+  ],
+  "academicAchievements": {
+    "recentFiveYears": {
+      "sciJournalPapers": 3,
+      "chineseCoreJournalPapers": 5,
+      "conferencePapers": "30+",
+      "focus": "使用者體驗 (UX) 與服務設計個案研究、人機互動、設計創新方法論"
+    },
+    "institutionsAndTeaching": [
+      "國立臺灣科技大學設計系（開設結合設計與商學院的使用者為中心課程、產品體驗設計與研究課程）",
+      "香港大學 (HKU) IPSD（教授商業模式與服務創新課程）",
+      "上海體驗思維學院（X Thinking Institute，進行體驗思維個案研究，從商業視角審視成功設計）"
+    ]
+  },
+  "internationalAwards": {
+    "total": "超過 20 座國際設計大獎",
+    "highlights": [
+      {
+        "name": "ACM CHI SDC Gold Award (國際人機互動大會學生設計競賽金獎)",
+        "significance": "亞洲歷史首度獲獎團隊 (First Asian Winner in History)"
+      },
+      {
+        "name": "SDN Service Design Award - Gold (全球服務設計聯盟大獎金獎)",
+        "significance": "亞洲歷史首度獲獎團隊 (First Asian Winner in History)"
+      },
+      {
+        "name": "Red Dot: Best of Best (德國紅點最佳設計獎)",
+        "significance": "紅點設計大獎最高榮譽"
+      },
+      {
+        "name": "Red Dot Junior Award (德國紅點新銳設計獎)",
+        "significance": "國際青年設計頂尖榮譽"
+      },
+      {
+        "name": "iF Design Award (德國 iF 設計獎)",
+        "significance": "全球頂尖工業與概念設計殊榮"
+      },
+      {
+        "name": "UXPA UX Gold Award (全球用戶體驗專業協會金獎)",
+        "significance": "國際 UX 領域最高專業指標"
+      }
+    ]
+  },
+  "industryTrainingAndClients": {
+    "workshopsCount": "主持超過 100 場設計思考、UX、服務設計與創新工作坊",
+    "clients": [
+      "台灣創意設計中心 / 台灣設計研究院 (TDRI)",
+      "中國生產力中心 (CPC)",
+      "工業技術研究院 (ITRI)",
+      "阿里巴巴 (Alibaba)",
+      "新東方在線 (New Oriental Online)",
+      "金蝶 (Kingdee)",
+      "大潤發 (RT-Mart)",
+      "富邦銀行 (Fubon Bank)",
+      "寶僑 (P&G)",
+      "特力屋 / HOLA",
+      "英業達 (Inventec)",
+      "TCL",
+      "DFT",
+      "行政院農業委員會 (農業部)",
+      "國家圖書館",
+      "國家公務人員保障暨培訓學院",
+      "台北市政府"
+    ],
+    "initiatives": "創辦與主持 Service Plus 服務設計大會；每年受邀各大國內外論壇發表演講。"
+  },
+  "mentorshipAndAlumni": {
+    "expertInvites": "每年邀請 20 位以上產業頂尖專家至校園授課交流，建立深度產學鏈結。",
+    "alumniCompanies": [
+      "Google",
+      "Microsoft",
+      "台積電 (TSMC)",
+      "Agoda",
+      "Yahoo",
+      "Line",
+      "阿里巴巴 (Alibaba)",
+      "騰訊 (Tencent)",
+      "字節跳動 (ByteDance)",
+      "華碩 (ASUS)"
+    ],
+    "impact": "培育兼具商業戰略、人本體驗與工程落地能力的跨領域卓越設計創新人才。"
+  },
+  "publicSectorImpact": {
+    "description": "近兩年帶領團隊大量投入台灣政府公共服務設計，透過設計的力量革新公部門服務流程與民眾體驗，推動實質社會影響力。"
+  },
+  "latestInsights2026": {
+    "title": "2026 人工智慧浪潮中 創新的改變及 設計的消逝與重生",
+    "summary": "深入剖析生成式 AI 及代理人技術對傳統設計流程帶來的破壞式創新，探討哪些初階設計技能正逐漸消逝，以及設計師如何升維至體驗戰略、人機協同與商業決策，實現設計價值的重生。",
+    "slideUrl": "https://docs.google.com/presentation/d/1J_T_RE2CeY9h7ZtYWNUL1xyCPx1fuF5E3UcQSRucdRw/edit#slide=id.g3cf5c58c5ca_0_0"
+  },
+  "officialLinks": {
+    "website": "http://www.ditldesign.com",
+    "medium": "https://medium.com/ditl",
+    "facebook": "https://www.facebook.com/proftang",
+    "googleScholar": "https://scholar.google.com.tw/citations?hl=zh-TW&user=SJRoKyMAAAAJ&view_op=list_works&sortby=pubdate",
+    "slideshare": "https://www.slideshare.net/search?utf8=%E2%9C%93&searchfrom=header&q=drhhtang&sort=RECENT"
+  },
+  "suggestedPrompts": [
+    "請介紹唐玄輝老師的核心專業領域與背景",
+    "唐老師曾獲哪些國際大獎？指導團隊的歷史紀錄是什麼？",
+    "學生畢業後的出路與指導特色如何？",
+    "唐老師進行過哪些企業培訓與產學合作？",
+    "唐老師近期對 2026 AI 浪潮中「設計的消逝與重生」有何觀點？",
+    "如何聯繫唐老師或了解設計創新思考研究室 (DITL)？"
+  ]
+}
